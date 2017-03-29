@@ -1,24 +1,50 @@
-import re
+
 
 class WordCounter:
     def __init__(self, file_list):
-        self.all_word_count = []
+        self._word_count = []
+        self._chars_count = []
+        self._line_count = []
         self._file_list = file_list
 
-    def returning_count_of_words(self):
-        iterator=0
+    def _counting_chars(self, file_to_read):
+        file_content = open(file_to_read, "r").read()
+        count =len(file_content.splitlines())
+       # file_to_read.close()
+        return count
+
+    def _counting_words(self, file_to_read):
+        file_content = open(file_to_read, "r").read()
+        count = len(file_content.split())
+       # file_to_read.close()
+        return count
+
+
+    def _counting_lines(self, file_to_read):
+        file_content = open(file_to_read, "r").read()
+        count = len(file_content)
+        #file_to_read.close()
+        return count
+
+    def returning_count_of_chars_words_lines_in_every_file(self):
         for file in self._file_list:
-            iterator=iterator+1
-            file_to_read = open(file, 'r')
-            file_content = file_to_read.read()
-            counter=0
-            for line in file_content:
-                each_wordlist=line.split(" ")
-                for each_word in each_wordlist:
-                    if re.match("[A-Za-z]",each_word):
-                        counter = counter+1
-            self.all_word_count.append(counter)
-            file_to_read.close()
-        print(self.all_word_count)
-    def get_list_of_amount(self):
-        return self.all_word_count
+
+            self._chars_count.append(self._counting_chars(file))
+            self._word_count.append(self._counting_words(file))
+            self._line_count.append(self._counting_lines(file))
+
+    def returning_count_of_all_chars_words_lines_provided(self):
+        self.returning_count_of_chars_words_lines_in_every_file()
+        count_chars=0
+        count_words=0
+        count_lines=0
+        for count in self._chars_count:
+            count_chars+= count
+        for count in self._word_count:
+            count_words += count
+        for count in self._line_count:
+            count_lines += count
+        print("Chars: {}".format(count_chars))
+        print("Words: {}".format(count_words))
+        print("Lines: {}".format(count_lines))
+

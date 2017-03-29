@@ -1,9 +1,10 @@
 from os.path import isfile
 from os.path import isdir
 from os import listdir
+from AbstractValidator import AbstractValidator
 
 
-class InputFileValidator:
+class InputFileValidator(AbstractValidator):
     def __init__(self, name):
         self._name=name
         self._files = []
