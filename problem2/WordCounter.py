@@ -1,5 +1,3 @@
-
-
 class WordCounter:
     def __init__(self, file_list):
         self._word_count = []
@@ -8,22 +6,25 @@ class WordCounter:
         self._file_list = file_list
 
     def _counting_chars(self, file_to_read):
-        file_content = open(file_to_read, "r").read()
-        count =len(file_content.splitlines())
-       # file_to_read.close()
+        file = open(file_to_read, "r")
+        file_content= file.read()
+        count =len(file_content)
+        file.close()
         return count
 
     def _counting_words(self, file_to_read):
-        file_content = open(file_to_read, "r").read()
+        file = open(file_to_read, "r")
+        file_content = file.read()
         count = len(file_content.split())
-       # file_to_read.close()
+        file.close()
         return count
 
 
     def _counting_lines(self, file_to_read):
-        file_content = open(file_to_read, "r").read()
-        count = len(file_content)
-        #file_to_read.close()
+        file = open(file_to_read, "r")
+        file_content = file.read()
+        count = len(file_content.splitlines())
+        file.close()
         return count
 
     def returning_count_of_chars_words_lines_in_every_file(self):
@@ -47,4 +48,3 @@ class WordCounter:
         print("Chars: {}".format(count_chars))
         print("Words: {}".format(count_words))
         print("Lines: {}".format(count_lines))
-
