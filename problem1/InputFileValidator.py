@@ -1,7 +1,8 @@
+from AbstractValidator import AbstractValidator
 from os.path import isfile
 from os.path import isdir
 from os import listdir
-from AbstractValidator import AbstractValidator
+
 
 
 class InputFileValidator(AbstractValidator):
